@@ -1,6 +1,8 @@
 import tweepy
+import re
+
 # open api-keys.txt and grab the keys
-with open('api-keys.txt', 'r') as f:
+with open('.env', 'r') as f:
     keys = f.read().splitlines()
 
     consumer_key = keys[0]
@@ -23,7 +25,6 @@ for index, tweet in enumerate(tweets):
     tweets_list.append(tweet.text)
 
 # replace new lines and emojis with spaces using regex
-import re
 for index, tweet in enumerate(tweets_list):
     tweets_list[index] = re.sub(r'\n', ' ', tweet)
     tweets_list[index] = re.sub(r'[^\x00-\x7F]+', ' ', tweets_list[index])
