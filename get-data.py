@@ -1,12 +1,16 @@
-from dotenv import load_dotenv, find_dotenv
-import tweepy
 import re
-import os
+import tweepy
+# open api-keys.txt and grab the keys
+with open('api-keys.txt', 'r') as f:
+    keys = f.read().splitlines()
 
-load_dotenv(find_dotenv())
+    consumer_key = keys[0]
+    consumer_secret = keys[1]
+    access_token = keys[2]
+    access_token_secret = keys[3]
 
-auth = tweepy.OAuthHandler(os.getenv("CONSUMER_KEY"), os.getenv("CONSUMER_SECRET"))
-auth.set_access_token(os.getenv("ACCESS_TOKEN"), os.getenv("ACCESS_TOKEN_SECRET"))
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
 tweets_list = []
