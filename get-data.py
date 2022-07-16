@@ -25,9 +25,8 @@ for index, tweet in enumerate(tweets):
     tweets_list.append(tweet.text)
 
 # replace new lines and emojis with spaces using regex
-for index, tweet in enumerate(tweets_list):
-    tweets_list[index] = re.sub(r'\n', ' ', tweet)
-    tweets_list[index] = re.sub(r'[^\x00-\x7F]+', ' ', tweets_list[index])
+for i, tweet in enumerate(tweets_list):
+    tweets_list[i] = re.sub(r'\n', ' ', tweet)
 
 with open('tweets.json', 'w') as outfile:
     json.dump({"tweets":tweets_list}, outfile)
