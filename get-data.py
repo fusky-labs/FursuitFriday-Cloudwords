@@ -2,6 +2,7 @@ import re
 import tweepy
 from dotenv import load_dotenv
 import os
+import json
 
 load_dotenv()
 consumer_key = os.getenv("CONSUMER_KEY")
@@ -28,7 +29,5 @@ for index, tweet in enumerate(tweets_list):
     tweets_list[index] = re.sub(r'\n', ' ', tweet)
     tweets_list[index] = re.sub(r'[^\x00-\x7F]+', ' ', tweets_list[index])
 
-# TODO: save the tweets to a file, could be in json, or txt
-with open('tweets.txt', 'w') as f:
-    for tweet in tweets_list:
-        f.write(f"{tweet}\n")
+with open('tweets.json', 'w') as outfile:
+    json.dump({"tweets":tweets_list}, outfile)
