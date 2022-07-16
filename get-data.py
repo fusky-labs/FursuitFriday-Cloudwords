@@ -29,3 +29,6 @@ for index, tweet in enumerate(tweets_list):
     tweets_list[index] = re.sub(r'[^\x00-\x7F]+', ' ', tweets_list[index])
 
 # TODO: save the tweets to a file, could be in json, or txt
+with open('tweets.txt', 'w') as f:
+    for tweet in tweets_list:
+        f.write(f"{tweet}\n")
